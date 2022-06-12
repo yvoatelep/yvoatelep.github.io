@@ -12,7 +12,7 @@ function init() {
         .text(sample)
         .property("value", sample);
     });
-
+    console.log(data)
     // Use the first sample from the list to build the initial plots
     var firstSample = sampleNames[0];
     console.log(firstSample);
@@ -29,7 +29,7 @@ function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildMetadata(newSample);
   buildCharts(newSample);
-  
+
 }
 
 // Demographics Panel 
@@ -62,67 +62,140 @@ function buildCharts(sample) {
     // 3. Create a variable that holds the samples array. 
     var samples = data.samples
     // 4. Create a variable that filters the samples for the object with the desired sample number.
-    
+
     var filteredSamples = samples.filter(row => row.id == sample)
-  
+
     //  5. Create a variable that holds the first sample in the array.
-    var aSample = filteredSamples [0]
-    console.log (aSample)
+    var aSample = filteredSamples[0]
+    console.log(aSample)
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otuids = aSample.otu_ids
     var otulabels = aSample.otu_labels
     var sampleValues = aSample.sample_values
-    
-    console.log (otuids,otulabels,sampleValues)
+
+    console.log(otuids, otulabels, sampleValues)
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
 
-    var yticks = otuids.map (otuid=> "OTU " + otuid).slice(0,10)
-    console.log (yticks)
+    var yticks = otuids.map(otuid => "OTU " + otuid).slice(0, 10)
+    console.log(yticks)
     // 8. Create the trace for the bar chart. 
-    var barData = [ {
-      x:sampleValues.slice(0,10),
-      y:yticks,
+    var barData = [{
+      x: sampleValues.slice(0, 10),
+      y: yticks,
       type: "bar",
-      orientation:"h"
+      orientation: "h"
     }
     ];
     // 9. Create the layout for the bar chart. 
-    var barLayout = { 
+    var barLayout = {
       title: "BarChart"
-    
-     
+
+
     };
     // 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot("bar",barData,barLayout)
+    Plotly.newPlot("bar", barData, barLayout);
+
+
+
+
+    //  // 1. Create the trace for the bubble chart.
+
+    var bubbleData = {
+      x: otuids,
+      y: sampleValues,
+      text: otulabels,
+      mode: 'markers',
+      marker: {
+        color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)', 'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
+        size: [40, 60, 80, 100]
+      }
+    };
+
+    var data2 = [bubbleData];
+
+    // 2. Create the layout for the bubble chart.
+    var layout2 = {
+      title: 'Bacteria Cultures Per Sample',
+      showlegend: false,
+      height: 600,
+      width: 600
+    };
+
+    // 3. Use Plotly to plot the data with the layout.
+    Plotly.newPlot('bubble', data2, layout2);
   });
 }
 
- // 1. Create the trace for the bubble chart.
- var bubbleData = {
-  x: [otuids.map (otuid=> "OTU " + otuid).slice(0,10)],
-  y: [sampleValues],
-  text: [otulabels],
-  mode: 'markers',
-  marker: {
-    color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-    size: [40, 60, 80, 100]
-  }
-};
+    
+    // var gaugeData = [
 
-var data = [bubbleData];
+    //   {
+    
+    //     domain: { x: [0, 10], y: [0, 1] },
+    
+    //     value: 10,
+    
+    //     title: { text: "Scrubs per Week" },
+    
+    //     type: "indicator",
+    
+    //     mode: "gauge+number+delta",
+    
+    //     delta: { reference: 380 },
+    
+    //     gauge: {
+    
+    //       axis: { range: [null, 10] },
+    
+    //       steps: [
+    
+    //         { range: [0, 2], color: "red" },
+    
+    //         { range: [2, 4], color: "orange" }
+    
+    //     { range: [4, 6], color: "yellow" }
+        
+    //     { range: [6, 8], color: "light green" }
+            
+    //     { range: [8, 10], color: "ogreen" }
+    //       ],
+    
+    //       threshold: {
+    
+    //         line: { color: "black", width: 4 },
+    
+    //         thickness: 0.75,
+    
+    //         value: 490
+    
+    //       }
+    
+    //     }
+    
+    //   }
+    
+    // ];
+    
+    
+    // var layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
+    
+    // Plotly.newPlot('gauge', data, layout);
 
-// 2. Create the layout for the bubble chart.
-var layout = {
-  title: 'Bacteria Cultures Per Sample',
-  showlegend: false,
-  height: 600,
-  width: 600
-};
+    // // // 4. Create the trace for the gauge chart.
+    // // var gaugeData = [
 
-// 3. Use Plotly to plot the data with the layout.
-Plotly.newPlot('bubble', data, layout);
+    // // ];
 
+    // // // 5. Create the layout for the gauge chart.
+    // // var gaugeLayout = { 
+
+    // // };
+
+    // // // 6. Use Plotly to plot the gauge data and layout.
+    // // Plotly.newPlot();
+  });
+}
