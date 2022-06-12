@@ -94,13 +94,9 @@ function buildCharts(sample) {
     var barLayout = {
       title: "BarChart"
 
-
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", barData, barLayout);
-
-
-
 
     //  // 1. Create the trace for the bubble chart.
 
@@ -124,76 +120,77 @@ function buildCharts(sample) {
       height: 600,
       width: 600
     };
-
+  
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot('bubble', data2, layout2);
+    });
+  }
+  
+//     var gaugeData = [
 
-
-    var gaugeData = [
-
-      {
+//       {
     
-        domain: { x: [0, 10], y: [0, 1] },
+//         domain: { x: [0, 10], y: [0, 1] },
     
-        value: 10,
+//         value: 10,
     
-        title: { text: "Scrubs per Week" },
+//         title: { text: "Scrubs per Week" },
     
-        type: "indicator",
+//         type: "indicator",
     
-        mode: "gauge+number+delta",
+//         mode: "gauge+number+delta",
     
-        delta: { reference: 380 },
+//         delta: { reference: 380 },
     
-        gauge: {
+//         gauge: {
     
-          axis: { range: [null, 10] },
+//           axis: { range: [null, 10] },
     
-          steps: [
+//           steps: [
     
-            { range: [0, 2], color: "red" },
+//             { range: [0, 2], color: "red" },
     
-            { range: [2, 4], color: "orange" }
+//             { range: [2, 4], color: "orange" }
     
-        { range: [4, 6], color: "yellow" }
+//         { range: [4, 6], color: "yellow" }
         
-        { range: [6, 8], color: "light green" }
+//         { range: [6, 8], color: "light green" }
             
-        { range: [8, 10], color: "green" }
-          ],
+//         { range: [8, 10], color: "green" }
+//           ],
     
-          threshold: {
+//           threshold: {
     
-            line: { color: "black", width: 4 },
+//             line: { color: "black", width: 4 },
     
-            thickness: 0.75,
+//             thickness: 0.75,
     
-            value: 490
+//             value: 490
     
-          }
+//           }
     
-        }
+//         }
     
-      }
+//       }
     
-    ];
+//     ];
     
     
-    var layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
+//     var layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
     
-    Plotly.newPlot('gauge', gaugeData, layout);
+//     Plotly.newPlot('gauge', gaugeData, layout);
 
-    // // // 4. Create the trace for the gauge chart.
-    // // var gaugeData = [
+//     // // // 4. Create the trace for the gauge chart.
+//     // // var gaugeData = [
 
-    // // ];
+//     // // ];
 
-    // // // 5. Create the layout for the gauge chart.
-    // // var gaugeLayout = { 
+//     // // // 5. Create the layout for the gauge chart.
+//     // // var gaugeLayout = { 
 
-    // // };
+//     // // };
 
-    // // // 6. Use Plotly to plot the gauge data and layout.
-    // // Plotly.newPlot();
-  });
-}
+//     // // // 6. Use Plotly to plot the gauge data and layout.
+//     // // Plotly.newPlot();
+// //   });
+// // }
