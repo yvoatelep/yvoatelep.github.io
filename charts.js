@@ -88,8 +88,7 @@ function buildCharts(sample) {
       y: yticks,
       type: "bar",
       orientation: "h"
-    }
-    ];
+    }];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
       title: "BarChart"
@@ -120,77 +119,93 @@ function buildCharts(sample) {
       height: 600,
       width: 600
     };
-  
+
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot('bubble', data2, layout2);
-    });
+//   });
+// }
+
+var gaugeData = [
+
+  {
+
+    domain: {
+      x: [0, 10],
+      y: [0, 1]
+    },
+
+    value: 10,
+
+    title: {
+      text: "Scrubs per Week"
+    },
+
+    type: "indicator",
+
+    mode: "gauge+number+delta",
+
+    delta: {
+      reference: 380
+    },
+
+    gauge: {
+
+      axis: {
+        range: [null, 10]
+      },
+
+      steps: [
+
+        {
+          range: [0, 2],
+          color: "red"
+        },
+
+        {
+          range: [2, 4],
+          color: "orange"
+        },
+
+        {
+          range: [4, 6],
+          color: "yellow"
+        },
+
+        {
+          range: [6, 8],
+          color: "light green"
+        },
+
+        {
+          range: [8, 10],
+          color: "green"
+        },
+      ],
+
+      threshold: {
+
+        line: {
+          color: "black",
+          width: 4
+        },
+
+        thickness: 0.75,
+
+        value: 490
+
+      }
+
+    }
+
   }
-  
-//     var gaugeData = [
 
-//       {
-    
-//         domain: { x: [0, 10], y: [0, 1] },
-    
-//         value: 10,
-    
-//         title: { text: "Scrubs per Week" },
-    
-//         type: "indicator",
-    
-//         mode: "gauge+number+delta",
-    
-//         delta: { reference: 380 },
-    
-//         gauge: {
-    
-//           axis: { range: [null, 10] },
-    
-//           steps: [
-    
-//             { range: [0, 2], color: "red" },
-    
-//             { range: [2, 4], color: "orange" }
-    
-//         { range: [4, 6], color: "yellow" }
-        
-//         { range: [6, 8], color: "light green" }
-            
-//         { range: [8, 10], color: "green" }
-//           ],
-    
-//           threshold: {
-    
-//             line: { color: "black", width: 4 },
-    
-//             thickness: 0.75,
-    
-//             value: 490
-    
-//           }
-    
-//         }
-    
-//       }
-    
-//     ];
-    
-    
-//     var layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
-    
-//     Plotly.newPlot('gauge', gaugeData, layout);
+];
 
-//     // // // 4. Create the trace for the gauge chart.
-//     // // var gaugeData = [
 
-//     // // ];
+    var layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
 
-//     // // // 5. Create the layout for the gauge chart.
-//     // // var gaugeLayout = { 
+    Plotly.newPlot('gauge', gaugeData, layout);
 
-//     // // };
 
-//     // // // 6. Use Plotly to plot the gauge data and layout.
-//     // // Plotly.newPlot();
-// //   });
-// // }
+  });
+}
