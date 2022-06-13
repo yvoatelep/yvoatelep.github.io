@@ -91,7 +91,8 @@ function buildCharts(sample) {
     }];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: "BarChart"
+      title: "BarChart",
+      paper_bgcolor:"#FFF3"
 
     };
     // 10. Use Plotly to plot the data with the layout. 
@@ -124,7 +125,9 @@ function buildCharts(sample) {
     Plotly.newPlot('bubble', data2, layout2);
 //   });
 // }
-
+var metadata = data.metadata;
+var filteredMetadata = metadata.filter(row => row.id == sample)
+var aMetadata = filteredMetadata[0]
 var gaugeData = [
 
   {
@@ -134,7 +137,7 @@ var gaugeData = [
       y: [0, 1]
     },
 
-    value: 10,
+    value: aMetadata.wfreq,
 
     title: {
       text: "Scrubs per Week"
@@ -186,7 +189,7 @@ var gaugeData = [
 
         line: {
           color: "black",
-          width: 4
+          width: 2
         },
 
         thickness: 0.75,
